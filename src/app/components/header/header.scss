@@ -1,0 +1,128 @@
+/* ===== Variables ===== */
+$radius: 12px;
+$max-width: 1100px;
+$pad-y: 16px;
+$pad-x: 20px;
+
+$bg: #0e0f12;
+$surface: #181b20;
+$text: #e8ebf0;
+$muted: rgba($text, 0.65);
+$accent: #7c9cff;
+
+/* ===== Header ===== */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba($surface, 0.9);
+  backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid rgba($text, 0.1);
+
+  .header-content {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: $pad-y $pad-x;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  /* Logo */
+  .logo a {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 1.2rem;
+    color: $text;
+    padding: 6px 8px;
+    border-radius: $radius;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($accent, 0.4);
+    }
+  }
+
+  /* Navigation */
+  nav {
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: clamp(14px, 2.5vw, 28px);
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item a {
+      position: relative;
+      color: $muted;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 2px;
+      border-radius: 8px;
+      transition: color 0.25s ease, transform 0.2s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -4px;
+        height: 2px;
+        transform: scaleX(0);
+        transform-origin: left;
+        background: $accent;
+        transition: transform 0.25s ease;
+      }
+
+      &:hover {
+        color: $text;
+        transform: translateY(-2px);
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($accent, 0.4);
+      }
+    }
+
+    /* État actif */
+    .nav-item.is-active a {
+      color: $text;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 780px) {
+  #header .header-content {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  #header nav {
+    width: 100%;
+
+    .nav-links {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+    }
+  }
+}

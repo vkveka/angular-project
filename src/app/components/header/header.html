@@ -1,0 +1,31 @@
+<section id="header">
+    <div class="header-content">
+        <div class="logo">
+            <img src="assets/images/logo.jpg" width="50px" height="auto" alt="logo"
+                style="object-fit: cover; object-position: bottom;">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a routerLink="/home" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/about" routerLinkActive="is-active">About</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/contact" routerLinkActive="is-active">Contact</a>
+                </li>
+                @if (!auth.isAuthenticated()) {
+                <li class="nav-item"><a routerLink="/login" routerLinkActive="is-active">Login</a></li>
+                <li class="nav-item"><a routerLink="/register" routerLinkActive="is-active">Register</a></li>
+                } @else {
+                <li class="nav-item"><a routerLink="/profile" routerLinkActive="is-active">Profile</a></li>
+                <li class="nav-item"><a class="cursor-pointer" (click)="onLogout()">Logout</a></li>
+                }
+            </ul>
+
+        </nav>
+    </div>
+</section>
