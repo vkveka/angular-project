@@ -42,11 +42,6 @@ export class AuthService {
       .pipe(tap((res) => {
         if (res.token && res.user) {
           this.tokenService.setToken(res.token)
-          // this.userService.setUser({
-          //   id: res.user.id ? parseInt(res.user.id, 10) : 0,
-          //   username: res.user.name || '',
-          //   email: res.user.email || ''
-          // });
         }
       }));
   }
@@ -56,19 +51,12 @@ export class AuthService {
       .pipe(tap((res) => {
         if (res.token && res.user) {
           this.tokenService.setToken(res.token)
-          // this.userService.setUser({
-          //   id: res.user.id ? parseInt(res.user.id, 10) : 0,
-          //   username: res.user.name || '',
-          //   email: res.user.email || ''
-          // });
         }
       }));
   }
 
   logout(): void {
     this.tokenService.clearToken();
-    // this.userService.clearUser();
-    // return this.http.post<void>(API_ENDPOINTS.auth.logout, {});
   }
 
   isAuthenticated(): boolean {

@@ -7,15 +7,99 @@
             <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
         <div class="gap-2 flex justify-center items-center flex-wrap">
-            <button
+            <button (click)="onUpdate()"
                 class="mt-12 bg-slate-800 hover:bg-slate-900 transition text-white font-bold py-2 px-4 rounded cursor-pointer">
                 Modifier
             </button>
+
+            @if (showModalUpdate) {
+            <div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+                (keydown.escape)="cancelUpdate()" tabindex="0">
+                <div class="fixed inset-0 bg-black/50" (click)="cancelUpdate()"></div>
+
+                <div class="relative w-full max-w-lg rounded-2xl bg-white shadow-xl ring-1 ring-black/5
+                p-6 animate-[fadeIn_.15s_ease-out]" (click)="$event.stopPropagation()" role="dialog" aria-modal="true"
+                    aria-labelledby="modal-update-title">
+
+                    <h2 id="modal-update-title" class="text-lg font-semibold text-gray-900 mb-4">
+                        Mettre à jour l'utilisateur
+                    </h2>
+
+                    <form [formGroup]="updateForm" (ngSubmit)="confirmUpdate()" class="space-y-4">
+
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-600 text-left">Nom</label>
+                            <input id="name" type="text" formControlName="name" class="mt-1 block w-full rounded-lg border border-slate-400 px-3 py-2 sm:text-sm
+                        focus:border-slate-500 focus:ring-slate-500 text-slate-700" />
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-600 text-left">Email</label>
+                            <input id="email" type="email" formControlName="email" class="mt-1 block w-full rounded-lg border border-slate-400 px-3 py-2 sm:text-sm
+                        focus:border-slate-500 focus:ring-slate-500 text-slate-700" />
+                        </div>
+
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-600 text-left">Mot de
+                                passe</label>
+                            <input id="password" type="password" formControlName="password" class="mt-1 block w-full rounded-lg border border-slate-400 px-3 py-2 sm:text-sm
+                        focus:border-slate-500 focus:ring-slate-500 text-slate-700" />
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-4">
+                            <button type="button" (click)="cancelUpdate()" class="cursor-pointer rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800
+                         hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                                Annuler
+                            </button>
+
+                            <button type="submit" class="cursor-pointer inline-flex items-center rounded-lg bg-red-600 px-4 py-2 text-sm
+                       font-semibold text-white hover:bg-red-700
+                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Mettre à jour
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            }
+
 
             <button (click)="onDelete()"
                 class="mt-12 bg-red-950 hover:bg-red-900 transition text-white font-bold py-2 px-4 rounded cursor-pointer">
                 <a>Supprimer</a>
             </button>
+
+            @if (showModalDelete) {
+            <div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+                (keydown.escape)="cancelDelete()" tabindex="0">
+                <div class="fixed inset-0 bg-black/50" (click)="cancelDelete()"></div>
+
+                <div class="relative w-full max-w-md rounded-2xl bg-white shadow-xl ring-1 ring-black/5
+                p-6 animate-[fadeIn_.15s_ease-out]" (click)="$event.stopPropagation()" role="dialog" aria-modal="true"
+                    aria-labelledby="modal-title">
+                    <h2 id="modal-title" class="text-lg font-semibold text-gray-900 mb-3">
+                        Confirmer la suppression
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Êtes-vous sûr de vouloir supprimer cet utilisateur&nbsp;?
+                    </p>
+
+                    <div class="flex justify-end gap-3">
+                        <button (click)="cancelDelete()" class="cursor-pointer inline-flex items-center rounded-lg border border-gray-300 bg-white
+                       px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50
+                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                            Annuler
+                        </button>
+
+                        <button (click)="confirmDelete()" class="cursor-pointer inline-flex items-center rounded-lg bg-red-600 px-4 py-2 text-sm
+                       font-semibold text-white hover:bg-red-700
+                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
         } @else {
         <p>Aucun utilisateur connecté.</p>
