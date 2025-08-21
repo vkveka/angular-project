@@ -42,11 +42,11 @@ export class AuthService {
       .pipe(tap((res) => {
         if (res.token && res.user) {
           this.tokenService.setToken(res.token)
-          this.userService.setUser({
-            id: res.user.id ? parseInt(res.user.id, 10) : 0,
-            username: res.user.name || '',
-            email: res.user.email || ''
-          });
+          // this.userService.setUser({
+          //   id: res.user.id ? parseInt(res.user.id, 10) : 0,
+          //   username: res.user.name || '',
+          //   email: res.user.email || ''
+          // });
         }
       }));
   }
@@ -54,15 +54,21 @@ export class AuthService {
   register(payload: RegisterPayload): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(API_ENDPOINTS.auth.register, payload)
       .pipe(tap((res) => {
-        if (res.token) {
+        if (res.token && res.user) {
           this.tokenService.setToken(res.token)
+          // this.userService.setUser({
+          //   id: res.user.id ? parseInt(res.user.id, 10) : 0,
+          //   username: res.user.name || '',
+          //   email: res.user.email || ''
+          // });
         }
       }));
   }
 
-  logout(): Observable<void> {
+  logout(): void {
     this.tokenService.clearToken();
-    return this.http.post<void>(API_ENDPOINTS.auth.logout, {});
+    // this.userService.clearUser();
+    // return this.http.post<void>(API_ENDPOINTS.auth.logout, {});
   }
 
   isAuthenticated(): boolean {

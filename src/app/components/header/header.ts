@@ -11,15 +11,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class Header {
   auth = inject(AuthService);
-  private router = inject(Router);
+  router = inject(Router);
+  isAuthenticated: boolean = false;
+
+  constructor() {
+    this.isAuthenticated = this.auth.isAuthenticated();
+  }
 
   onLogout() {
-    this.auth.logout().subscribe({
-      next: () => {
-        console.log('Déconnexion réussie');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => console.error('Erreur lors de la déconnexion', err),
-    });
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
+
 }

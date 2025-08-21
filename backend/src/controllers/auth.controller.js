@@ -93,9 +93,9 @@ exports.login = async (req, res) => {
 };
 
 // User logout
-exports.logout = (req, res) => {
-  // Invalidate the token on the client side
-  // This is a placeholder as logout logic can vary based on implementation
-  res.status(200).json({ message: "User logged out successfully" });
-}
+// exports.logout = (req, res) => {
+//   // Invalidate the token on the client side
+//   // This is a placeholder as logout logic can vary based on implementation
+//   res.status(200).json({ message: "User logged out successfully" });
+// }
 
