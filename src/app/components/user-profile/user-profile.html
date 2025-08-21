@@ -3,7 +3,7 @@
         <h1 class="text-5xl italic font-semibold shadow-2xl mb-5">Mon compte</h1>
         @if (user) {
         <div class="text-lg">
-            <h2>Nom: {{ user.username }}</h2>
+            <h2>Nom: {{ user.name }}</h2>
             <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
         <div class="gap-2 flex justify-center items-center flex-wrap">
@@ -11,10 +11,10 @@
                 class="mt-12 bg-slate-800 hover:bg-slate-900 transition text-white font-bold py-2 px-4 rounded cursor-pointer">
                 Modifier
             </button>
-          
-            <button
+
+            <button (click)="onDelete()"
                 class="mt-12 bg-red-950 hover:bg-red-900 transition text-white font-bold py-2 px-4 rounded cursor-pointer">
-                Supprimer
+                <a>Supprimer</a>
             </button>
         </div>
         } @else {
