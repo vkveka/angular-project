@@ -1,13 +1,9 @@
 <div class="relative flex justify-center items-center">
-    <div class="absolute z-10 text-white text-center w-200 tracking-wider">
+    <div class="absolute z-10 text-gray-300 text-center w-200 tracking-wider">
         <h1 class="text-5xl italic font-semibold shadow-2xl">Accueil</h1>
         <p class="mt-12 text-lg">
-            Bienvenue !
+            Bienvenue ! {{user?.name}}
         </p>
-        <button
-            class="mt-12 bg-slate-800 hover:bg-slate-900 transition text-white font-bold py-2 px-4 rounded cursor-pointer">
-            Button
-        </button>
     </div>
     <img src="assets/images/image1.jpg" alt="image main content"
         class="w-full h-[500px] object-cover object-bottom relative">
