@@ -8,7 +8,7 @@ export const API_ENDPOINTS = {
     },
     user: {
         profile: `${API_BASE_URL}/users/profile`,
-        updateProfile: `${API_BASE_URL}/users/profile`,
-        deleteUser: `${API_BASE_URL}/users/profile`
+        // updateProfile: `${API_BASE_URL}/users/profile`,
+        // deleteUser: `${API_BASE_URL}/users/profile`
     },
 }
